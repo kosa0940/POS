@@ -1,0 +1,2 @@
+biblioteka csv posluzyla mi do obs³ugi mojej udawanej bazy daych w pliku csv.
+Zaluje wyboru tego formatu, jest toi format niestabilny i arkusz ³¹czy kolumn, niemniej baza dancyh dziala
