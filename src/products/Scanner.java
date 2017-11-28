@@ -19,6 +19,9 @@ public class Scanner {
 		return barcodeFound;
 	}
 
+	public void setBarcodeFound(boolean barcodeFound) {
+		this.barcodeFound = barcodeFound;
+	}
 
 	public Product searchBarcode(int barcode)
 	{

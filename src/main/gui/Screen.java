@@ -3,7 +3,6 @@ package main.gui;
 import Shopping.Print;
 import Shopping.Receipt;
 import Shopping.ShoppingCart;
-import products.IGetCsvFile;
 import products.Product;
 import products.ReadCsvFile;
 import products.Scanner;
@@ -15,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class Screen extends JFrame implements ActionListener{
+
+    private boolean wrongBarcodeFormat=false;
 
     String myPath = "product2.csv";
     File myFile = new File(myPath);
@@ -82,11 +83,15 @@ public class Screen extends JFrame implements ActionListener{
 
         Scanner scanner = new Scanner(myRead);
         if(source==add){
+            wrongBarcodeFormat=false;
 
             if(barcodeField.getText().isEmpty()==false) {
                 receiptArea.setText("\tNAZWA\tCENA\n");
-
-                sc.addProductToShoppingCart(scanner.searchBarcode(Integer.parseInt(barcodeField.getText())));
+try {
+    sc.addProductToShoppingCart(scanner.searchBarcode(Integer.parseInt(barcodeField.getText())));
+}catch(NumberFormatException ex){
+    status.setText("Status: Product not found");
+}
                 for (Product i : sc.products) {
                     receiptArea.append("\n\t" + i.getName() + "\t" + i.getPrice());
                 }
@@ -95,10 +100,10 @@ public class Screen extends JFrame implements ActionListener{
                 receiptArea.append(sum);
                 status.setText("Status: ");
 
-            if(scanner.isBarcodeFound()==false){
+            if(scanner.isBarcodeFound()==false&&wrongBarcodeFormat==false){
                 status.setText("Status: Product not found");
                 receiptArea.setText("\tNAZWA\tCENA\n");
-            }}else status.setText("Satus Invalid bar-code");
+            }}else status.setText("Satus: Invalid bar-code");
 
         }
         if(source==close){
