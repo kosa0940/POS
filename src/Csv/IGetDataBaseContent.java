@@ -1,6 +1,6 @@
 package Csv;
 
-public interface IGetCsvContent {
+public interface IGetDataBaseContent {
 
     public void getCsvContent();
 
