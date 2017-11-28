@@ -36,6 +36,7 @@ public class Screen extends JFrame implements ActionListener{
 
 
         super("Impaq");
+        //Every operation that describes gui look
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
@@ -138,8 +139,7 @@ try {
         }
     }
 
-    //This metod will display a current bill on POS screen
-
+    //This method will display a current bill on POS screen
     public void showBillOnScreen(){
 
         receiptArea.setText("\tNAZWA\tCENA\n");
