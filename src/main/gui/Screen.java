@@ -1,5 +1,6 @@
 package main.gui;
 
+import Shopping.Print;
 import Shopping.Receipt;
 import Shopping.ShoppingCart;
 import products.IGetCsvFile;
@@ -111,6 +112,10 @@ public class Screen extends JFrame implements ActionListener{
             receipt.prepareRecepit();
             receipt.saveReceipt();
             receiptArea.setText("\tNAZWA\tCENA\n");
+
+            Print print = new Print();
+            print.setReceiptToPrint(receipt.readyReceipt);
+            print.printReceipt();
 
         }
     }

@@ -19,6 +19,7 @@ public class Receipt {
 	{
 		this.sc=sc;
 	}
+	public String readyReceipt;
 	
 	
 	public void prepareRecepit()
@@ -32,6 +33,7 @@ public class Receipt {
 		}
 		double roundOff = Math.round(sc.getSumOfPrices() * 100.0) / 100.0;
 		sb.append("\n\nLaczna suma zakupow: " + roundOff + " zl.");
+		readyReceipt = sb.toString();
 	}
 	
 	public String getReceipt()
