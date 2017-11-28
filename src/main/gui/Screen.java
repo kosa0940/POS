@@ -78,9 +78,6 @@ public class Screen extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent evt){
         Object source= evt.getSource();
 
-        //Polymorphism here
-
-
         myRead = new ReadCsvFile(myFile);
         myRead.readMyCsvFile();
 
