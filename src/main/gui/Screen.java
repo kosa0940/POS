@@ -19,9 +19,8 @@ public class Screen extends JFrame implements ActionListener{
     private boolean wrongBarcodeFormat=false;
 
     //Objects that will allow to use and display data
-    String myPath = "product2.csv";
-    File myFile = new File(myPath);
-    ReadCsvFile myRead = new ReadCsvFile(myFile);
+    File myFile = new File("product2.csv");
+    ReadCsvFile myRead = new ReadCsvFile(new File("product2.csv"));
     ShoppingCart sc = new ShoppingCart();
 
     //GUI Objects
@@ -75,8 +74,7 @@ public class Screen extends JFrame implements ActionListener{
 
     }
 
-    //Buttons
-
+    //Buttons Actions
     public void actionPerformed(ActionEvent evt){
         Object source= evt.getSource();
 

@@ -25,7 +25,7 @@ public class Category {
 		this.description = "None";
 	}
 
-	public void addNewProductProduct(Product prod){
+	public void addNewProduct(Product prod){
 		products.add(prod);
 	}
 

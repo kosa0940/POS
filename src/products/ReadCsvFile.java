@@ -31,11 +31,11 @@ public class ReadCsvFile{
 
 				if (lines > 0) {
 
-					String[] country = line.split(csvSplitBy);
-					String categoryName = country[0];
-					String barcode = country[2];
-					String name = country[1];
-					String price = country[3];
+					String[] helpingArray = line.split(csvSplitBy);
+					String categoryName = helpingArray[0];
+					String barcode = helpingArray[2];
+					String name = helpingArray[1];
+					String price = helpingArray[3];
 
 					if (helpItems.contains(categoryName)) {
 						nameOfCategory = categoryName;
@@ -53,7 +53,7 @@ public class ReadCsvFile{
 					for (Category item : categories) {
 
 						if (nameOfCategory.equals(item.getNameOfCategory())) {
-							item.addNewProductProduct(p);
+							item.addNewProduct(p);
 							break;
 						}
 					}
