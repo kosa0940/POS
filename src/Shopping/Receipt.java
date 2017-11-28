@@ -21,7 +21,7 @@ public class Receipt {
 	}
 	public String readyReceipt;
 	
-	
+	//Preparing receipte look
 	public void prepareRecepit()
 	{
 		products = sc.getProducts();
@@ -41,6 +41,7 @@ public class Receipt {
 		return sb.toString();
 	}
 
+	//Saving txt receipt on hdd
 	public void saveReceipt(){
 
 		try{

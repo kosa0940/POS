@@ -13,26 +13,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+//Simple gui
 public class Screen extends JFrame implements ActionListener{
 
     private boolean wrongBarcodeFormat=false;
 
+    //Objects that will allow to use and display data
     String myPath = "product2.csv";
     File myFile = new File(myPath);
     ReadCsvFile myRead = new ReadCsvFile(myFile);
-
     ShoppingCart sc = new ShoppingCart();
 
-
+    //GUI Objects
     JTextField barcodeField = new JTextField(10);
     JTextArea receiptArea = new JTextArea(500,100);
     JScrollPane scroll ;
     JLabel description=new JLabel("Podaj kod kreskowy"),status=new JLabel("Status: ");
     JButton add=new JButton("Dodaj produkt"),print=new JButton("Drukuj/Zapisz"),close=new JButton("Zamknij program");
 
+    //GUI constructor
     public Screen(){
 
-        //Wyglad prostego gui
+
         super("Impaq");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -72,45 +74,56 @@ public class Screen extends JFrame implements ActionListener{
 
     }
 
-    //Obluga przyciskow
+    //Buttons
 
     public void actionPerformed(ActionEvent evt){
         Object source= evt.getSource();
-        //Polymorphism here
-       myRead = new ReadCsvFile(myFile);
-       myRead.readMyCsvFile();
 
+        //Polymorphism here
+        myRead = new ReadCsvFile(myFile);
+        myRead.readMyCsvFile();
 
         Scanner scanner = new Scanner(myRead);
         if(source==add){
+
+            //Helping tool in exceptions handling
             wrongBarcodeFormat=false;
 
+            //If everything's fine this if statement will update shooping cart and diplay it's content on screen
             if(barcodeField.getText().isEmpty()==false) {
                 receiptArea.setText("\tNAZWA\tCENA\n");
+
+                //try statement will handle any format exception for example mixing letters with numbers
 try {
     sc.addProductToShoppingCart(scanner.searchBarcode(Integer.parseInt(barcodeField.getText())));
-}catch(NumberFormatException ex){
-    status.setText("Status: Product not found");
-}
-                for (Product i : sc.products) {
-                    receiptArea.append("\n\t" + i.getName() + "\t" + i.getPrice());
-                }
-                double roundOff = Math.round(sc.getSumOfPrices() * 100.0) / 100.0;
-                String sum = "\n\n\tłączna kwota do zaplaty :" + roundOff + "zł";
-                receiptArea.append(sum);
+
+                showBillOnScreen();
                 status.setText("Status: ");
 
+            }catch(NumberFormatException ex){
+                wrongBarcodeFormat=true;
+                status.setText("Satus: Invalid bar-code");
+
+                showBillOnScreen();
+            }
+
+            //this statements handle situation with wrong barcode
             if(scanner.isBarcodeFound()==false&&wrongBarcodeFormat==false){
                 status.setText("Status: Product not found");
-                receiptArea.setText("\tNAZWA\tCENA\n");
-            }}else status.setText("Satus: Invalid bar-code");
+               showBillOnScreen();
 
+               //in any unexpected exception else statement will display communicate on screen
+            }}else status.setText("Satus: Invalid bar-code");
         }
+
+        //Exit button will not allow to close aplication before printing a receipt
         if(source==close){
             if(receiptArea.getText().equals("\tNAZWA\tCENA\n")){
                 System.exit(1);
             }else{status.setText("Status: Print the receipt before exiting");}
         }
+
+        //Print receipt and store a txt copy of it in Aplication folder
         if(source==print){
 
             Receipt receipt = new Receipt(sc);
@@ -123,6 +136,22 @@ try {
             print.printReceipt();
 
         }
+    }
+
+    //This metod will display a current bill on POS screen
+
+    public void showBillOnScreen(){
+
+        receiptArea.setText("\tNAZWA\tCENA\n");
+
+        for (Product i : sc.products) {
+            receiptArea.append("\n\t" + i.getName() + "\t" + i.getPrice());
+        }
+        double roundOff = Math.round(sc.getSumOfPrices() * 100.0) / 100.0;
+
+        String sum = "\n\n\tłączna kwota do zaplaty :" + roundOff + "zł";
+        receiptArea.append(sum);
+
     }
 
 }

@@ -1,6 +1,5 @@
 package main;
 
-import Shopping.Print;
 import main.gui.Screen;
 
 public class Main {

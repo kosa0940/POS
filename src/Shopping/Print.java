@@ -4,20 +4,20 @@ import java.awt.*;
 import java.awt.print.*;
 import java.util.StringTokenizer;
 
-
+//Printing a receipt
 public class Print implements Printable{
 
     private String receiptToPrint;
-    StringTokenizer st;
+    private StringTokenizer st;
 
+   //Constructor is forming a receipt look
     public int print(Graphics g, PageFormat pf, int page)
             throws PrinterException {
 
-
-        if (page > 0) {
+        //without this statement a printer wouldn't stop adding empty pages to print que
+       if (page > 0) {
             return NO_SUCH_PAGE;
         }
-
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.translate(pf.getImageableX(), pf.getImageableY());
@@ -28,10 +28,9 @@ public class Print implements Printable{
             g.drawString(st.nextToken().replace("\t","  "),100,y);
             y+=20;
         }
-
-
         return PAGE_EXISTS;
     }
+    //method that printing prepared Graphic file
     public void printReceipt(){
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(this);
@@ -40,7 +39,7 @@ public class Print implements Printable{
             try {
                 job.print();
             } catch (PrinterException ex) {
-              /* The job did not successfully complete */
+              ex.getMessage();
             }
         }
     }

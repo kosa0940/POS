@@ -7,25 +7,18 @@ public class Scanner {
 	private ArrayList<Product> products;
 	private boolean barcodeFound;
 
-
-
 	private ArrayList<Category> categories = new ArrayList<>();
-
 	public Scanner(ReadCsvFile rcf) {
 		this.rcf = rcf;
 	}
-
 	public boolean isBarcodeFound() {
 		return barcodeFound;
 	}
 
-	public void setBarcodeFound(boolean barcodeFound) {
-		this.barcodeFound = barcodeFound;
-	}
-
+	//Searching for barcode match in my dataBase now stored which im placing in products array and it's searched category
+	// after category, return a product
 	public Product searchBarcode(int barcode)
 	{
-
 		barcodeFound=false;
 		categories = rcf.getCategories();
 		Product p = null;

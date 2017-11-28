@@ -1,34 +1,20 @@
 package products;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
-import java.io.File;
-
+import java.io.*;
 import java.util.ArrayList;
 
 public class ReadCsvFile{
-	File file;
+
+
+	 File file;
 	private String nameOfCategory = "";
 	private ArrayList<Category> categories;
-
-	StringBuilder sb = new StringBuilder();
 
 	public ReadCsvFile(File file) {
 		this.file = file;
 
 	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
+//Reads my csv DataBase
 	public void readMyCsvFile() {
 
 		ArrayList<String> helpItems = new ArrayList<>();
@@ -50,8 +36,6 @@ public class ReadCsvFile{
 					String barcode = country[2];
 					String name = country[1];
 					String price = country[3];
-
-					//System.out.println(barcode);
 
 					if (helpItems.contains(categoryName)) {
 						nameOfCategory = categoryName;
@@ -95,19 +79,6 @@ public class ReadCsvFile{
 
 	public ArrayList<Category> getCategories() {
 		return categories;
-	}
-
-	public void setCategories(ArrayList<Category> categories) {
-		this.categories = categories;
-	}
-
-	public void getAllElementsFromCategories() {
-
-		for (Category item : categories) {
-
-			item.getAllElements();
-		}
-
 	}
 
 }
