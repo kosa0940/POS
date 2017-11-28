@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class ReadCsvFile{
 
 
-	 File file;
+	File file;
 	private String nameOfCategory = "";
 	private ArrayList<Category> categories;
 
