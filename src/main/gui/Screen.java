@@ -20,7 +20,7 @@ public class Screen extends JFrame implements ActionListener{
 
     //Objects that will allow to use and display data
     File myFile = new File("product2.csv");
-    ReadCsvFile myRead = new ReadCsvFile(new File("product2.csv"));
+    ReadCsvFile myRead = new ReadCsvFile(myFile);
     ShoppingCart sc = new ShoppingCart();
 
     //GUI Objects
@@ -79,6 +79,8 @@ public class Screen extends JFrame implements ActionListener{
         Object source= evt.getSource();
 
         //Polymorphism here
+
+
         myRead = new ReadCsvFile(myFile);
         myRead.readMyCsvFile();
 

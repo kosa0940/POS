@@ -1,7 +1,7 @@
 package products;
 
 import java.io.*;
-import java.util.ArrayList;
+		import java.util.ArrayList;
 
 public class ReadCsvFile{
 
@@ -14,7 +14,7 @@ public class ReadCsvFile{
 		this.file = file;
 
 	}
-//Reads my csv DataBase
+	//Reads my csv DataBase
 	public void readMyCsvFile() {
 
 		ArrayList<String> helpItems = new ArrayList<>();

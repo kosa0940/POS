@@ -22,11 +22,13 @@ public class Print implements Printable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.translate(pf.getImageableX(), pf.getImageableY());
 
+        g2d.setFont(new Font("Dialog",0,5));
+
         st = new StringTokenizer(receiptToPrint,"\n");
         int y=100;
         while(st.hasMoreTokens()){
             g.drawString(st.nextToken().replace("\t","  "),100,y);
-            y+=20;
+            y+=5;
         }
         return PAGE_EXISTS;
     }

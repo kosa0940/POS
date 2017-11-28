@@ -1,5 +1,7 @@
 package products;
 
+import Csv.IGetDataBaseContent;
+
 import java.util.ArrayList;
 
 public class Scanner {
